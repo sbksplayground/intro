@@ -1,15 +1,16 @@
 {
-  "name": "sbks-test-project",
+  "name": "TechBakers",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "lukas.weber@socialbakers.com",
-  "license": "proprietary",
+  "author": "ondrej.altman@socialbakers.com",
+  "license": "socialbakers",
   "dependencies": {
-    "express": "~3.4.8"
+    "express": "^3.4.8"
   },
   "private": true
 }
