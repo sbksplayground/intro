@@ -1,33 +1,109 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<title>test</title>
-	<meta charset="utf-8" />
+  <title>Dashboard</title>
+  <meta charset='utf-8' />
 </head>
+
 <body>
-	<h1>Hello world</h1>
-	<button id="btn">Načti post</button>
+  <style type='text/css'>
+	  img.picture {
+		width: 40px;
+		height: 40px;
+	  }
+	  #back{
+	    position: absolute;
+	    left: 350px;
+	    top: 40px;
+	  }
+	  #next{
+		position: absolute;
+	    left: 380px;
+	    top: 40px;
+	  }
+  </style>
+  
+  <h1>DASHBOARD</h1>
+  <div id="post">
+   <button id="back"><<</button> 
+   <button id="next">>></button>
+   <table border=1px>
+     <thead id="headline">
+        <tr>
+		  <th class="fans">Fans</th>
+          <th class="fan_growth">Fan Growth</th>
+          <th class="name">Name</th>
+          <th class="picture">Picture</th>
+          <th class="local_fans">Local Fans CZK</th>
+       </tr>
+      </thead>
+     <tbody id="body">
+     
+     </tbody>
+   </table>
+  </div>
 
-	<div id="post">
-		<h2></h2>
-		<p></p>
-	</div>
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+       jQuery(document).ready(function($){
+          
+          var next = $("#next");
+          var back = $("#back");
+          var input = "http://demo6031840.mockable.io/";
 
-	<script type="text/javascript" src="/jquery-2.1.0.min.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			var postContainer = $('#post');
-			var btn = $('#btn');
+          $.getJSON(input, function(jsondata){
 
-			btn.click(function () {
-				$.get('/post/1', function (post, status) {
-					postContainer.find('h2').text(post.title);
-					postContainer.find('p').text(post.content);
+            $.each(jsondata, function(index, value){
+		      if(index === 'parsed'){
+				
+		        $.each(value, function(i, v){
+			      $('#body').append('<tr>');
+				  $.each(v, function(ia, va){
+			        if(ia === 'BC'){
+				      $('#body').append('<td class=name>'+va+'</td>');
+				    }
+				    if(ia === 'AB'){
+				      $('#body').append('<td class=fans>'+va+'</td>');
+				    }
+				    if(ia === 'AC'){
+				      $('#body').append('<td class=fan_growth>'+va+'</td>');
+				    }
+				    if(ia === 'BD'){
+					  $('#body').append('<img class=picture src='+va+'>');
+					}
+				    if(ia === 'BH'){
+				      $.each(va, function(ib, vb){
+					    if(ib === 'CZ'){
+						  $('#body').append('<td class=local_fans>'+vb+'</td>');
+						}
+					  });
+				    }
+				  });  
+				  $('tbody').append('</tr>');
 				});
+			  }
+	//		  $(".picture").hide(100);
+    //        $(".local_fans").hide(100); 
+			 });
+           });
+          next.click(function(){
+            $(".fans").hide(100);
+            $(".fan_growth").hide(100);
+            $(".picture").show(100);
+            $(".local_fans").show(100);
+          });
+          back.click(function(){
+            $(".fans").show(100);
+            $(".fan_growth").show(100);
+            $(".picture").hide(100);
+            $(".local_fans").hide(100);
+          });
+         });
 
-				btn.remove();
-			});
-		});
-	</script>
+    </script>
+
+
+
+
 </body>
+
 </html>
