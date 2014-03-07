@@ -1,0 +1,80 @@
+html {
+  font-family: "Open Sans", sans-serif;
+  font-size: 90%;
+}
+
+/* STYLE */
+dd {
+  font-size: 0.9em;
+  color: #777777;
+}
+
+thead {
+    /* background-color: gray; */
+}
+
+thead tr {
+    border-bottom: 3px solid black;
+    margin-bottom: 3px;
+}
+
+thead td {
+    text-align: center;
+}
+
+thead td.search {
+    text-align: left;
+}
+
+/* LAYOUT */
+table {
+ /*background-color: green;*/
+ padding: 1em;
+}
+
+tr:nth-child(even){
+  /*background-color: gray;*/
+}
+
+tr {
+
+}
+
+#dashboard {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+#filtering {
+    width: 25%;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 70px;
+    max-height: 70px;
+}
+
+td.picture {
+    vertical-align: middle;
+    text-align: center;
+}
+
+td.integer {
+    text-align: right;
+    width: 100px;
+}
+
+td.local {
+    text-align: right;
+}
+
+td {
+    text-indent: 0.4em;
+    padding: 0.4em;
+}
+
+td:first-child {
+	max-width: 10em;
+}
+
