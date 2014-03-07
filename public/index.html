@@ -1,33 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<title>test</title>
-	<meta charset="utf-8" />
+	<title>My Awesome dashboard</title>
+	<meta charset="utf=8" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-	<h1>Hello world</h1>
-	<button id="btn">Načti post</button>
+    <div id="dashboard">
+        <p class="first-world-javascript-problems">
+            Pro zobrazení výsledků musíte mít ve svém prohlížeči zapnutý Javascript.
+        </p>
+    </div>
+	<script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="js/model.js"></script>
+    <script type="text/javascript" src="js/analytics.js"></script>
+    <script>
+        var model;
+        var _data = $.get('/data',function (data) {
+            _data = data;
+        })
 
-	<div id="post">
-		<h2></h2>
-		<p></p>
-	</div>
+        .done(function() {
+            model = new DataModel(_data.parsed, _data.map);
+            dash = new AnalyticsDashboard(model, $('#dashboard'), {
+                "BD": "BD",
+                "BC": "BC",
+                "BB": "BB",
+                "AB": "AB",
+                "BH": "BH",
+                "AC": "AC",
+                "AG": "AG",
+                "AK": "AK",
+                "AE": "AE",
+                "AF": "AF"
+            });
 
-	<script type="text/javascript" src="/jquery-2.1.0.min.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			var postContainer = $('#post');
-			var btn = $('#btn');
+            app_render_prepare();
+            dash.render();
+            init_controls();
+        })
+        .fail(function() {
+            console.log("Fail");
+        });
+/*
 
-			btn.click(function () {
-				$.get('/post/1', function (post, status) {
-					postContainer.find('h2').text(post.title);
-					postContainer.find('p').text(post.content);
-				});
+        */
+    </script>
+    <script type="text/javascript" src="js/formatting.js"></script>
+    <script type="text/javascript" src="js/render.js"></script>
+    <script type="text/javascript" src="js/controls.js"></script>
+    <script>
+        /*
+        jQuery(document).ready(function() {
 
-				btn.remove();
-			});
-		});
-	</script>
+        });
+        */
+    </script>
 </body>
 </html>
