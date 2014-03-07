@@ -1,0 +1,41 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Test</title>
+
+</head>
+	<body>
+		<h1>Hello World</h1>
+
+		<button id="btn">Nacti</button>
+		
+		<div id="post">
+			<h2></h2>
+			<p></p>
+		</div>
+
+
+		<script type="text/javascript" src="./jquery-2.1.0.min.js"></script>
+		<script type="text/javascript"> 
+			jQuery(document).ready(function ($) {
+				//alert("ok");
+				var postContainer = $("#post");
+			
+				var btn = $("#btn");
+				btn.click(function  () {
+					
+				
+					$.get("/post/1", function (post, status) {
+						postContainer.find("h2").text(post.title);
+						postContainer.find("p").text(post.content);
+							
+					});
+					btn.remove();
+
+				});
+				
+
+			});
+		</script>
+	</body>
+</html>

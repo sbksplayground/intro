@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <script type="text/javascript" src="./jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="./jsonobject.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>TechBakers</title>
+    </head>
+    <body>
+        <h1>TechBakers</h1>
+
+        <div id="analytics">
+
+        </div>
+        
+        <script type="text/javascript">
+            function resort(by, asc) {
+                //alert("resort");
+                jsObj.sort(by, asc);
+                $("#analytics").html(jsObj.show());
+            }
+
+            jQuery(document).ready(function($) {
+                analyticsCont = $("#analytics");
+
+                var request = new XMLHttpRequest();
+                request.open("GET", "../analytics.json", false);
+                request.send(null);
+                var text = JSON.parse(request.responseText);
+                jsObj = new JsonObject(text.map, text.parsed);
+
+                jsObj.sort("AB", jsObj.asc);
+                //var content = jsObj.show();
+                analyticsCont.html(jsObj.show());
+                var btnFan = $("#fcount");
+                btnFan.click(function() {
+                    jsObj.sort("AB", !jsObj.asc);
+                    var c = jsObj.show();
+                    analyticsCont.empty().html(c);
+                });
+                var btnLike = $("#lcount");
+                btnLike.click(function () {
+                    jsObj.sort("AL", !jsObj.asc);
+                    analyticsCont.empty().html(jsObj.show());
+                });
+                //window.alert(jsObj.data[0]["AB"]);
+                //analyticsCont.find("p").createTextNode(table+console+endTable);
+                //analyticsCont.find("p").empty().html(table+content+endTable);
+                //analyticsCont.find("p").text(String.fromCharCode(65));
+
+            });
+        </script>
+    </body>
+</html>

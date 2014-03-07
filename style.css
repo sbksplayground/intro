@@ -1,0 +1,50 @@
+/* 
+    Created on : 5.3.2014, 20:21:52
+    Author     : R
+*/
+
+#analytics{ 
+    width: 800px; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+#analytics table{
+    border-collapse: collapse;
+    
+}
+#analytics table thead th{   
+    border: thin solid lightgray;
+    
+}
+#analytics table tr{
+    border-bottom: thin solid lightgray;   
+   
+}
+#analytics table td{
+     padding: 6px 3px 6px 3px;
+}
+.center{
+    vertical-align: middle; 
+}
+.right{
+    text-align: right; 
+}
+.name{
+    /*font-size: 12px;*/ font-weight: bold;
+}
+.picture{
+    height: auto;
+    width: auto;
+    float: left;
+    margin: 0px 3px 0px 3px;
+}
+.picture img{
+    height: 48px;
+    width: 48px;
+}
+.vline{
+    width: 10px;
+    height: 48px;
+    float: left;
+    
+}
