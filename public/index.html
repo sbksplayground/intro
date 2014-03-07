@@ -1,33 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>test</title>
-	<meta charset="utf-8" />
+    <title>Dashboard - balicekt</title>
+
+
+    <link rel="stylesheet" type="text/css" href="css/clear.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.min.css"/>
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="application/javascript" src="js/main.min.js"></script>
+
 </head>
 <body>
-	<h1>Hello world</h1>
-	<button id="btn">Načti post</button>
 
-	<div id="post">
-		<h2></h2>
-		<p></p>
-	</div>
+<table id="dashboard">
 
-	<script type="text/javascript" src="/jquery-2.1.0.min.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			var postContainer = $('#post');
-			var btn = $('#btn');
+    <thead>
+    <tr>
+        <th class="th-free"></th>
+        <th colspan="10" class="header-arrows"> <div id="left-arrow"><span></span></div><div id="right-arrow"><span></span></div> </th>
+    </tr>
+    <tr id="dashboard-desc">
+        <th class="name-info">
+            Name
+        </th>
+        <th>
+            <p class="arrow-change fans" role="AB">Fans total</p>
+        </th>
+        <th>
+            <p class="arrow-change fan-growth" role="AC">Fan growth</p>
+        </th>
+        <th>
+            <p class="arrow-change rating-change" role="AH">Rating change</p>
+        </th>
+        <th>
+            <p class="arrow-change comment-count" role="AM">Comment count</p>
+        </th>
+        <th>
+            <p class="arrow-change share-count" role="AN">Share count</p>
+        </th>
+        <th>
+            <p class="arrow-change question-count" role="AR">Question count</p>
+        </th>
+    </tr>
+    </thead>
 
-			btn.click(function () {
-				$.get('/post/1', function (post, status) {
-					postContainer.find('h2').text(post.title);
-					postContainer.find('p').text(post.content);
-				});
 
-				btn.remove();
-			});
-		});
-	</script>
+    <tbody id="dashboard-body">
+
+    </tbody>
+
+
+    <!--<tfoot>-->
+    <!--<tr>-->
+        <!--<td colspan="100">-->
+            <!--Socialbakers dashboard-->
+        <!--</td>-->
+    <!--</tr>-->
+    <!--</tfoot>-->
+
+</table>
+
+
+<div id="test">
+
+</div>
+
 </body>
 </html>
