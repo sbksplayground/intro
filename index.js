@@ -9,13 +9,18 @@ var app = express();
 
 app.use(express.static(DIST_PATH));
 
-app.get('/post/1', function (req, res) {
+/*app.get('/post/1', function (req, res) {
 	res.send({
 		id: 1,
 		date: Date.now(),
 		title: 'První post',
 		content: 'lorem ipsum et dolor sit amet'
 	});
+});*/
+
+app.use('/data',function(req, res){
+    //res.send(open());
+    res.sendfile(path.join(DIST_PATH,'/data.json'));
 });
 
 app.listen(8080, function () {
