@@ -32,6 +32,7 @@ JsonObject.prototype.show = function() {
     var tr = "<tr>";
     var endTr = "</tr>";
     var th = "<th>";
+    var thrl = "<th class='borderRL'>";
     var endTh = "</th>";
     var td = "<td>";
     var tdrc = "<td class='right center'>";
@@ -41,10 +42,10 @@ JsonObject.prototype.show = function() {
     //key = jsObj.map["AC"];
     var item = this.data[0];
     var countItem = this.data.length;
-    var head = tr + th + countItem + " Facebook pages" + endTh + endTr
-            + tr + th + "Name" + endTh + th + '<button id="fcount">Fans</button>' + endTh + th + "Interactions" + endTh 
-            + th + "Local Fans" + select(item.BH) + endTh 
-            + th + '<button id="lcount">Likes</button>' + endTh 
+    var head = tr + th + countItem + " Facebook pages" + endTh + th+endTh+th+endTh+ th+endTh+th+endTh+ th+endTh + endTr
+            + tr + th + "Name" + endTh + thrl + '<button id="fcount">Fans</button>' + endTh + thrl + "Interactions" + endTh 
+            + thrl + "Local Fans" + select(item.BH) + endTh 
+            + thrl + '<button id="lcount">Likes</button>' + endTh 
             + th + "Comments" + endTh + endTr;
     var content = table + thead + head + endThead + tbody;
     for (var i = 0; i < countItem; i++) {

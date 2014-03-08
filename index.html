@@ -1,41 +1,53 @@
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>Test</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <script type="text/javascript" src="./jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="./jsonobject.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <h1>Dashboard</h1>
 
-</head>
-	<body>
-		<h1>Hello World</h1>
+        <div id="dashboard">
 
-		<button id="btn">Nacti</button>
-		
-		<div id="post">
-			<h2></h2>
-			<p></p>
-		</div>
+        </div>
+        
+        <script type="text/javascript">
+            function dash(by, asc) {
+                //alert("dash");
+                jsObj.sort(by, asc);
+                $("#dashboard").html(jsObj.show());
+                var btnFan = $("#fcount");
+                btnFan.click(function() {
+                    dash("AB", !jsObj.asc);
+                });
+                var btnLike = $("#lcount");
+                btnLike.click(function () {
+                    dash("AL", !jsObj.asc);
+                });
+            }
 
+            jQuery(document).ready(function($) {
+                dashboardCont = $("#dashboard");
 
-		<script type="text/javascript" src="./jquery-2.1.0.min.js"></script>
-		<script type="text/javascript"> 
-			jQuery(document).ready(function ($) {
-				//alert("ok");
-				var postContainer = $("#post");
-			
-				var btn = $("#btn");
-				btn.click(function  () {
-					
-				
-					$.get("/post/1", function (post, status) {
-						postContainer.find("h2").text(post.title);
-						postContainer.find("p").text(post.content);
-							
-					});
-					btn.remove();
+                var request = new XMLHttpRequest();
+                request.open("GET", "../dashboard.json", false);
+                request.send(null);
+                var text = JSON.parse(request.responseText);
+                jsObj = new JsonObject(text.map, text.parsed);
+                dash("AB", jsObj.asc);
+                //jsObj.sort("AB", jsObj.asc);
+                //var content = jsObj.show();
+                //dashboardCont.html(jsObj.show());
+                
+                //window.alert(jsObj.data[0]["AB"]);
+                //dashboardCont.find("p").createTextNode(table+console+endTable);
+                //dashboardCont.find("p").empty().html(table+content+endTable);
+                //dashboardCont.find("p").text(String.fromCharCode(65));
 
-				});
-				
-
-			});
-		</script>
-	</body>
+            });
+        </script>
+    </body>
 </html>
